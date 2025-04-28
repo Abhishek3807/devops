@@ -1,0 +1,37 @@
+services:
+  backend:
+    build: ./backend  # Make sure your backend code is in the 'backend' folder
+    ports:
+      - "3000:3000"  # Adjust the port for your backend
+    networks:
+      - mern_network
+    environment:
+      MONGO_URI: mongodb://mongo:27017/Notes # Mongo URI for the backend to connect to
+    depends_on:
+      - mongodb
+
+  frontend:
+    build: .  # Since your frontend files are in the root directory, use '.' for the context
+    ports:
+      - "3001:3000"  # Map port 3001 on the host to port 3000 inside the container (frontend)
+    networks:
+      - mern_network
+    environment:
+      REACT_APP_API_URL: http://backend:3000  # The backend API URL the frontend will connect to
+
+  mongodb:
+    image: mongo:latest  # Using the latest MongoDB image
+    ports:
+      - "27017:27017"  # Expose MongoDB on port 27017
+    networks:
+      - mern_network
+    volumes:
+      - mongo-data:/data/db  # Persist MongoDB data locally
+
+networks:
+  mern_network:
+    driver: bridge  # Define a bridge network for the services to communicate
+
+volumes:
+  mongo-data:
+    driver: local  # Persist MongoDB data on the host machine
