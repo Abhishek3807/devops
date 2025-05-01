@@ -119,7 +119,7 @@ function MainPage({ logout }) {
       </aside>
       <main className="content">
         <header className="header">
-          <h1>Hello, {username}! 👋</h1>
+          <h1>Hello everyone, {username}! 👋</h1>
         </header>
         <div className="search-sort-container">
           <input
