@@ -129,7 +129,7 @@ function MainPage({ logout }) {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
-        <p className="notes-intro">All your notes are here, in one place!</p>
+        <p className="notes-intro"> notes are here, in one place!</p>
         <div className="notes-grid">
           {showNewNote && (
             <div className="note new-note">
